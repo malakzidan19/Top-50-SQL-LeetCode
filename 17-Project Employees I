@@ -1,0 +1,16 @@
+## question-->
+Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.
+
+## notes-->
+We calculate the average experience of employees working on each project.
+- By default, `AVG()` may return an **integer** if all input values are integers.
+- To avoid losing decimal precision, we **multiply the values by `1.0`** inside the `AVG()` function.
+- This forces floating-point division and ensures the result is returned as a **float**.
+- We then use `ROUND(..., 2)` to limit the result to **2 decimal places** for clean and readable output.
+- ROUND(numeric_expression, decimal_places)
+
+## code-->
+select p.project_id  , round(avg(1.0 *e.experience_years) , 2) as  average_years
+from Project p join Employee e
+on p.employee_id = e.employee_id 
+group by p.project_id
