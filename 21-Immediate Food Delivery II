@@ -1,3 +1,19 @@
 ## question-->
+If the customer's preferred delivery date is the same as the order date, then the order is called immediate; otherwise, it is called scheduled.
+The first order of a customer is the order with the earliest order date that the customer made. It is guaranteed that a customer has precisely one first order.
+Write a solution to find the percentage of immediate orders in the first orders of all customers, rounded to 2 decimal places.
+
 ## notes-->
+the WHERE clause filters only the first order for each customer using MIN(order_date) grouped by customer_id.
+Then, we count how many of those first orders are immediate (when order_date = customer_pref_delivery_date).
+We divide the number of immediate first orders by the total number of first orders.
+Finally, we round the result to 2 decimal places
+
 ## code -->
+# Write your MySQL query statement below
+select round(sum(case when order_date=customer_pref_delivery_date then 1 else 0 end)*100.0/count(*),2) as  immediate_percentage
+from Delivery d
+where (customer_id , order_date )in
+(select customer_id ,min(order_date)
+from Delivery d
+group by customer_id )
