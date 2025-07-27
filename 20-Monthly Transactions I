@@ -1,4 +1,22 @@
 ## question-->
+Write a solution to find the monthly transactions report which includes for each month and country:
+The number of transactions (trans_count)
+The number of approved transactions (approved_count)
+The total transaction amount (trans_total_amount)
+The total approved transaction amount (approved_total_amount)
+
+## notes-->
+1-- FORMAT(date_column, 'yyyy-MM')
+-yyyy (all lowercase) -> year
+-MM (both capital)  ->number of month
+-mm (lowercase)  -> minutes, not months
+2-- case syntax:
+CASE
+  WHEN condition THEN value_if_true
+  ELSE value_if_false
+END
+3--'approved'  ✅ , "approved"	❌  
+"double quotes" are only used when enclosing column or table names.for string values, always use single quotes ' '.
 
 ## code-->
 select FORMAT(trans_date,'yyyy-MM') as  month ,country ,
