@@ -1,1 +1,21 @@
+## question-->
+We define query quality as:The average of the ratio between query rating and its position.We also define poor query percentage as:The percentage of all queries with rating less than 3.
+Write a solution to find each query_name, the quality and poor_query_percentage.
+Both quality and poor_query_percentage should be rounded to 2 decimal places
 
+## notes -->
+We calculate the percentage of poor queries based on their rating.
+1--  Syntax of CASE:
+CASE
+  WHEN condition THEN value_if_true
+  ELSE value_if_false
+END
+2-- CASE is applied to each row ,Then SUM adds them up based on the query_name.
+3-- Multiplying by 100.0 (not 100) forces floating-point division, which avoids integer rounding.
+
+## code-->
+select q.query_name , round(avg(q.rating *1.0/ q.position ),2) as  quality ,
+round(sum(case when q.rating<3 then 1 else 0 end )*100.0/count(*),2)
+as poor_query_percentage
+from Queries q
+group by query_name
