@@ -1,0 +1,15 @@
+## question-->
+Write a solution to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively. A user was active on someday if they made at least one activity on that day.
+
+## notes-->
+-Filter records where activity_date is between June 28, 2019 and July 27, 2019(the 30-day period ending on July 27, 2019 )
+-DATEADD(datepart, number, date)
+| `datepart` | الجزء الزمني اللي هتضيفه (زي DAY, MONTH, YEAR) |
+| `number`   | عدد الوحدات الزمنية (ممكن يكون موجب للإضافة أو سالب للطرح) |
+| `date`     | التاريخ الأصلي اللي هتضيف عليه |
+
+## code-->
+select activity_date as  day , count(distinct user_id) as active_users 
+from Activity 
+where  activity_date between DATEADD(day,-29,'2019-07-27') and '2019-07-27'
+group by activity_date
