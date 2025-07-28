@@ -1,5 +1,10 @@
 ## question-->
 Write a solution to find all the classes that have at least five students.
+
+## notes-->
+-✅ GROUP BY بيتعامل مع الأعمدة الأصلية (columns)
+-✅ HAVING بيتعامل مع الـ Aggregated Values.
+
 ## code-->
 select class 
 from Courses
