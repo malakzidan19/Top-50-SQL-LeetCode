@@ -1,0 +1,16 @@
+## question-->
+A single number is a number that appeared only once in the MyNumbers table.
+Find the largest single number. If there is no single number, report null.
+
+## notes-->
+1)In the subquery, MAX() works on the filtered unique values (those appearing once),
+but in the main query with GROUP BY, MAX() applies to each group separately, not the whole result.
+2)"An alias is required so that SQL can treat the temporary result of the subquery as a named table."
+3)The MAX() function returns NULL when there are no values to evaluate.
+
+## code-->
+select max(num) as num
+from (select num 
+from MyNumbers
+group by num 
+having count(*)=1) as unique_numbers
