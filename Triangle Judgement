@@ -1,0 +1,13 @@
+## question-->
+Report for every three line segments whether they can form a triangle.
+
+## notes-->
+A valid triangle must have all sides greater than zero,
+and the sum of any two sides must be greater than the third side.
+
+## code-->
+select x  , y  , z , case when
+x>0 and y>0 and z>0
+and x+y>z and x+z>y and y+z>x
+then 'Yes' else 'No' end  as triangle 
+from Triangle
